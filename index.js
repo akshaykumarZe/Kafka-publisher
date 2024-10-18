@@ -4,7 +4,7 @@ require('dotenv').config();
 // Kafka configuration from environment variables
 const kafka = new Kafka({
     clientId: 'nodejs-publisher',
-    brokers: [process.env.KAFKA_BROKER]
+    brokers: [process.env.KAFKA_BROKER || "my-cluster-kafka-bootstrap.kafka:9092"]
 });
 
 const producer = kafka.producer();
@@ -16,7 +16,7 @@ const number = process.env.PUBLISH_NUMBER;
 const publishMessage = async () => {
     try {
         await producer.connect();
-        console.log(`Connected to Kafka broker at ${process.env.KAFKA_BROKER}`);
+        console.log(`Connected to Kafka broker`);
 
         // Publish message every 5 seconds
         setInterval(async () => {
