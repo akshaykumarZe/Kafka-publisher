@@ -1,6 +1,6 @@
 const { Kafka } = require('kafkajs');
-require('.env').config();
-
+import dotenv from "dotenv";
+dotenv.config();
 const kafka = new Kafka({
     clientId: 'nodejs-publisher',
     brokers: [process.env.KAFKA_BROKER || "my-cluster-kafka-bootstrap.kafka:9092"],
