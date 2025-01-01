@@ -1,10 +1,9 @@
 const { Kafka } = require('kafkajs');
-require('dotenv').config();
+require('.env').config();
 
 const kafka = new Kafka({
     clientId: 'nodejs-publisher',
     brokers: [process.env.KAFKA_BROKER || "my-cluster-kafka-bootstrap.kafka:9092"],
-    ssl: process.env.KAFKA_SSL === 'true', // Enable SSL if required
     sasl: {
         mechanism: 'scram-sha-512',
         username: process.env.KAFKA_SASL_USERNAME, // SASL username
